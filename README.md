@@ -18,7 +18,7 @@ It wrote the code, ran away, and now the game is unplayable.
 
 1. **Play the game.** Open the "Developer Debug Info" tab in the app to see the secret number. Try to win.
 2. **Find the State Bug.** Why does the secret number change every time you click "Submit"? Ask ChatGPT: *"How do I keep a variable from resetting in Streamlit when I click a button?"*
-3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them.
+3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them. #FIX
 4. **Refactor & Test.** - Move the logic into `logic_utils.py`.
    - Run `pytest` in your terminal.
    - Keep fixing until all tests pass!
@@ -35,7 +35,7 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 
 1. You choose a difficulty
 2. You enter a guess and submit it
-3. You get a hint if you are too low or too high and enter a new hint
+3. You get a hint if you are too low or too high and enter a new guess
 4. When you guess it right, you win the game!
 
 ## 🧪 Test Results

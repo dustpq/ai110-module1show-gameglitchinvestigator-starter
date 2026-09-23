@@ -10,14 +10,16 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 **Bug Reproduction Log**
 
+At the start, the game displayed a guessing interface, but several behaviors did not match the game rules. The hint direction was reversed, and the game state did not always reset correctly after a completed game. Guess submission also felt delayed because the input and button were being handled across separate Streamlit interactions. The test import error came from running pytest outside the project directory rather than from a missing `logic_utils.py` file.
+
 Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| Entering a lower number than the answer | The hint should tell me to go higher | The hint told me to go lower | Logic bug in the guess comparison |
-| Entering a higher number than the answer | The hint should tell me to go lower | The hint told me to go higher | Logic bug in the guess comparison |
-| Clicking New Game after winning or losing | A new playable game should start | The previous game-over status remained active | No console error |
-| Clicking Submit Guess after entering a guess | The guess should register immediately | The button sometimes appeared to require a second click | No console error |
+| Entering a lower number than the answer | The hint should tell me to go higher | The hint told me to go lower | Logic bug in the guess comparison #FIX |
+| Entering a higher number than the answer | The hint should tell me to go lower | The hint told me to go higher | Logic bug in the guess comparison #FIX |
+| Clicking New Game after winning or losing | A new playable game should start | The previous game-over status remained active | No console error #FIX |
+| Clicking Submit Guess after entering a guess | The guess should register immediately | The button sometimes appeared to require a second click | No console error #FIX |
 
 ---
 
@@ -38,7 +40,7 @@ I used Copilot within VS Code. There were a couple of bugs that I couldn't reall
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
-A bug was fixed if the program's behavior made sense after the fix. The tests just doubled checked if the ranges were as expected, and they did help me catch a bug where the range wasn't actually being updated. The AI helped me get the tests up and running actually as the functions weren't being imported properly.
+A bug was fixed when the program's behavior matched the expected result during manual testing. The pytest tests checked winning, too-high, and too-low outcomes, and all three passed after the logic changes. I also manually checked that numeric strings were interpreted as numbers and that a new game reset its state. The AI helped me understand the test import problem and get the tests running from the project directory. #FIX
 
 ---
 
@@ -46,7 +48,7 @@ A bug was fixed if the program's behavior made sense after the fix. The tests ju
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
 
-Streamlit just updates whenever the state changes and that's how you get logic to update. It's a very easy framework to get the hang of.
+Streamlit reruns the Python script from the top whenever a user interacts with a widget. Session state stores values such as the secret number, score, and game status so those values survive the rerun. Without session state, variables could be recreated and the secret number could change unexpectedly. #FIX
 
 ---
 
