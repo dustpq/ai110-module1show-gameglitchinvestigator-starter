@@ -64,6 +64,7 @@ st.info(
 )
 
 with st.expander("Developer Debug Info"):
+    st.write("Range:", low, "-", high)
     st.write("Secret:", st.session_state.secret)
     st.write("Attempts:", st.session_state.attempts)
     st.write("Score:", st.session_state.score)
@@ -85,7 +86,7 @@ with col3:
 
 if new_game:
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    st.session_state.secret = random.randint(low, high)
     st.success("New game started.")
     st.rerun()
 
