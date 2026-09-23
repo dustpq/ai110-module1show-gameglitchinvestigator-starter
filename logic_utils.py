@@ -1,5 +1,5 @@
 def get_range_for_difficulty(difficulty: str):
-    """Return (low, high) inclusive range for a given difficulty."""
+    """Return (low, high) inclusive range for a given difficulty. #FIX"""
     if difficulty == "Easy":
         return 1, 10
     if difficulty == "Normal":
@@ -39,22 +39,18 @@ def check_guess(guess, secret):
 
     outcome examples: "Win", "Too High", "Too Low"
     """
+    #FIX Normalize both values before comparing so numeric strings are not compared alphabetically.
+    guess = int(guess)
+    secret = int(secret)
+
     if guess == secret:
         return "Win", "🎉 Correct!"
 
-    try:
-        if guess > secret:
-            return "Too High", "📉 Go LOWER!"
-        return "Too Low", "📈 Go HIGHER!"
-    except TypeError:
-        g = str(guess)
-        s = str(secret)
-
-        if g == s:
-            return "Win", "🎉 Correct!"
-        if g > s:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+    if guess > secret:
+        #FIX A high guess needs a lower hint.
+        return "Too High", "📉 Go LOWER!"
+    #FIX A low guess needs a higher hint.
+    return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
